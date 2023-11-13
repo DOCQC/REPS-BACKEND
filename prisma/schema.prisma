@@ -13,7 +13,6 @@ datasource db {
 model TypeUsers {
   id Int @default(autoincrement()) @id
   description String  @unique
-  user Users[]
 }
 
 model Users {

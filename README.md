@@ -46,9 +46,9 @@ git commit -m "fix(DOCF001): add padding in button on login page"
 
 ### Comandos para rodar docker
 
-Para esse projeto colocamos um docker com a imagem do postgres.
+Para este projeto, utilizamos um contêiner Docker com a imagem do PostgreSQL
 
-Para subir o docker basta colocar o seguinte código no terminar 
+Para executar o contêiner, basta inserir o seguinte código no terminal:
 
 **OBS:** Precisa ter o docker instalado na sua máquina
 

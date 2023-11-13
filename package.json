@@ -20,7 +20,7 @@
     "prisma": "^5.5.2",
     "jsonwebtoken": "^9.0.2"
   },
-  "description": "- Node v18.17 - Yarn Package Manager - Express - JWT - Prisma - MongoDB -a",
+  "description": "- Node v18.17 - NPM - Express - JWT - Prisma - Postgres",
   "keywords": [],
   "author": ""
 }

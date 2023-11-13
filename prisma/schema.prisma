@@ -10,16 +10,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model TypeUsers {
-  id Int @default(autoincrement()) @id
+model Type_users {
+  id  Int  @id @default(autoincrement())
   description String  @unique
+  users  Users[]
+
+  @@map("type_users")
 }
 
 model Users {
-  id Int @id @default(autoincrement())
-  username String
+  id          Int      @id @default(autoincrement())
+  username    String
   phomeNumber String
-  typeUsers TypeUsers @relation(fields: [id], references: [id])
+  type_users   Type_users @relation(fields: [id], references: [id])
+
+   @@map("users")
 }
 
 

@@ -31,6 +31,8 @@ Em tipos poderemos ter o seguintes abaixos:
 * ``refactor``- Commits do tipo refactor referem-se a mudanças devido a refatorações que não alterem sua funcionalidade, como por exemplo, uma alteração no formato como é processada determinada parte da tela, mas que manteve a mesma funcionalidade, ou melhorias de performance devido a um code review.
 * ``enhancement``- Commits do tipo enhancement indicam melhorias de uma feature, isto é, algo a ser acrescentado a um recurso já existente, como por exemplo uma melhoria no layout de um botão.
 
+* ``chore`` - Alterar fora do ambiente de execução - Atualize algo sem impactar o código (ex: atualização leia-me, atualização CI/CD...).
+
 O *scope* se refere o id da issue, por exemlpo se há uma issue de  DOCQ001 com commit corrigindo o bugfix  deve ser escrito seguindo  o padrão:
 
 ```

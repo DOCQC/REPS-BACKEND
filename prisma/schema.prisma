@@ -10,35 +10,104 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-<<<<<<< HEAD
-model Type_users {
-  id  Int  @id @default(autoincrement())
-  description String  @unique
-  users  Users[]
-
-  @@map("type_users")
-}
-
-model Users {
-  id          Int      @id @default(autoincrement())
-  username    String
-  phomeNumber String
-  type_users   Type_users @relation(fields: [id], references: [id])
-
-   @@map("users")
-=======
-model TypeUsers {
+model TypeUser {
   id Int @default(autoincrement()) @id
   description String  @unique
-  user Users[]
+  user User[]
+
+  @@map("type_user")
 }
 
-model Users {
+model User {
   id Int @id @default(autoincrement())
-  username String
-  phomeNumber String
-  typeUsers TypeUsers @relation(fields: [id], references: [id])
->>>>>>> 077fd25 (DOCB - Create project's archicture)
+  name String
+  phome_number String @unique
+  typer_users_id Int
+  typer_user TypeUser @relation(fields: [ typer_users_id], references: [id])
+  email String @unique
+  password String @unique
+  enterprise Enterprise?
+  professor Professor?
+
+  @@map("users")
+
+}
+
+model Enterprise {
+  id Int @id @default(autoincrement())
+  name String
+  accountable String 
+  phomeNumber String @unique
+  cpnj String @unique
+  address String 
+  isVisit Boolean
+
+  user_id  Int @unique
+  user User @relation(fields: [user_id], references: [id])
+
+  quest Quest[]
+
+  @@map("enterprise")
+}
+
+model Quest{
+  id Int @id @default(autoincrement())
+  title String
+  decription String
+  enterprise_id Int 
+  enterprise Enterprise @relation(fields: [enterprise_id], references: [id])
+  area_of_expertise AreaOfExpertise[]
+
+  @@map("quest")
+}
+
+model  AreaOfExpertise{
+  id Int @id @default(autoincrement())
+  description String
+  quest Quest[]
+  laboratory_expertise LaboratoryExpertise[]
+
+  @@map("area_of_expertise")
+}
+
+model LaboratoryExpertise{
+  id Int @id @default(autoincrement())
+  start_date DateTime
+  lab_id Int
+  lab Lab @relation(fields: [lab_id], references: [id])
+
+  area_of_expertise_id Int
+  area_of_expertise AreaOfExpertise @relation(fields: [area_of_expertise_id], references: [id])
+
+  @@map("laboratory_expertise")
+}
+
+model Lab {
+  id Int @id @default(autoincrement())
+  name String @unique
+  abbreviation String @unique
+  url_img String @unique
+  descripition String
+
+  laboratory_expertise LaboratoryExpertise[]
+}
+
+
+model TeamLab {
+  id Int @id @default(autoincrement())
+  accountble Boolean 
+  professor Professor[]
+}
+
+model Professor {
+  id Int @id @default(autoincrement())
+  team_lab_id Int
+  team_lab TeamLab @relation(fields: [team_lab_id], references: [id])
+  
+  user_id Int?  @unique
+  user User? @relation(fields: [user_id], references: [id])
+
+  siape String @unique
 }
 
 

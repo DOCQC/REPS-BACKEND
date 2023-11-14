@@ -20,7 +20,6 @@ model TypeUser {
 
 model User {
   id Int @id @default(autoincrement())
-  name String
   phome_number String @unique
   typer_users_id Int
   typer_user TypeUser @relation(fields: [ typer_users_id], references: [id])
@@ -37,7 +36,6 @@ model Enterprise {
   id Int @id @default(autoincrement())
   name String
   accountable String 
-  phomeNumber String @unique
   cpnj String @unique
   address String 
   isVisit Boolean
@@ -101,12 +99,11 @@ model TeamLab {
 
 model Professor {
   id Int @id @default(autoincrement())
+  name String
   team_lab_id Int
   team_lab TeamLab @relation(fields: [team_lab_id], references: [id])
-  
   user_id Int?  @unique
   user User? @relation(fields: [user_id], references: [id])
-
   siape String @unique
 }
 

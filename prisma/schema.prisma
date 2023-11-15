@@ -28,7 +28,7 @@ model User {
   enterprise Enterprise?
   professor Professor?
 
-  @@map("users")
+  @@map("user")
 
 }
 

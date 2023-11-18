@@ -1,15 +1,18 @@
 import express from 'express';
 import cors from 'cors';
-import {typeUserRouter} from "./src/Routers/typeUserRouter.js";
+import { userTypeRouter } from "./src/routers/userTypeRouter.js";
 
 const app = express();
-app.use(express.json());
-app.use(cors);
 
-app.use('/typesUser', typeUserRouter)
+app.use(express.json());
+app.use(cors({
+    origin: '*'
+}));
+
+app.use('/userTypes', userTypeRouter)
 app.get('/', (req, res) => {
-    console.log("router principal")
-    res.send('hello world')
+    res.send('REPS')
 })
 
-app.listen(8000, () => console.log('Server is running on port 8000'));
+const port = 8000
+app.listen(port, () => console.log(`Server is running on port: ${port}`));

@@ -34,10 +34,10 @@ export async function create(data) {
 
 }
 
-export async function update(id, data) {
+export async function update(data) {
     return prisma.userType.update({
         where: {
-            id: id
+            id: data["id"]
         },
         data: {
             description: data["description"],
@@ -46,10 +46,10 @@ export async function update(id, data) {
 
 }
 
-export async function deleteById(id) {
+export async function deleteById(data) {
     return prisma.userType.delete({
         where: {
-            id: id
+            id: data["id"]
         },
     })
 

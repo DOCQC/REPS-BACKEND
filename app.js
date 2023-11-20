@@ -11,9 +11,6 @@ app.use(cors({
 }));
 
 app.use('/userTypes', userTypeRouter)
-app.get('/', (req, res) => {
-    res.send('REPS')
-})
 app.use(errorHandler)
 
 const port = 8000

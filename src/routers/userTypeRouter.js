@@ -1,35 +1,31 @@
 import { Router } from "express";
-import * as userTypeController  from "../controllers/userTypeController.js"
+import { UserTypeController } from "../controllers/userTypeController.js";
 import { requestBodyValidator } from "../middlewares/json/requestBodyValidator.js"
 import { userTypeSchema } from "../middlewares/json/schemas/userTypeSchema.js";
 import * as userTypeErrorHandler from "../middlewares/exceptions/userTypeErrorHandler.js";
 export const userTypeRouter = new Router();
 
-userTypeRouter.get("/", async (req, res, next) => {
-    res.send(await userTypeController.findAll(req.query))
-})
+userTypeRouter.get("/",
+    UserTypeController.findAll
+)
 
 userTypeRouter.post("/",
     requestBodyValidator(userTypeSchema),
-    async (req, res, next) => {
-        res.send(await userTypeController.create(req.body))
-})
+    UserTypeController.create
+)
 
 userTypeRouter.get("/:id",
     userTypeErrorHandler.exists,
-    async (req, res, next) => {
-        res.send(res.locals.userType)
-})
+    UserTypeController.findById
+)
 
 userTypeRouter.delete("/:id",
     userTypeErrorHandler.exists,
-    async (req, res, next) => {
-        res.status(204).send(await userTypeController.deleteById(res.locals.userType))
-})
+    UserTypeController.deleteById
+)
 
 userTypeRouter.put("/:id",
     userTypeErrorHandler.exists,
     requestBodyValidator(userTypeSchema),
-    async (req, res, next) => {
-        res.send(await userTypeController.update(res.locals.userType))
-})
+    UserTypeController.update
+)

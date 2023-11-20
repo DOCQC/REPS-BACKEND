@@ -1,23 +1,35 @@
 import * as userTypeService from "../services/userTypeService.js"
 
 
-export async function findAll (queryParam) {
-    const data = {
-        "description": queryParam["description"],
-        "skip": queryParam["pg"]== null? 0 : ( Number(queryParam["qt"]) * (Number(queryParam["pg"]) - 1) ),
-        "take": queryParam["qt"] == null? 100 : Number(queryParam["qt"])
+export class UserTypeController {
+    static async findAll(req, res) {
+        const queryParam = req.query
+        const data = {
+            "description": queryParam["description"],
+            "skip": queryParam["pg"]== null? 0 : ( Number(queryParam["qt"]) * (Number(queryParam["pg"]) - 1) ),
+            "take": queryParam["qt"] == null? 100 : Number(queryParam["qt"])
+        }
+        res.send(await userTypeService.findAll(data));
+
     }
-    return userTypeService.findAll(data);
-}
+    static async create(req, res) {
+        res.status(201).send(await userTypeService.create(req.body));
+    }
 
-export async function create(data) {
-    return userTypeService.create(data);
-}
+    static findById(req, res) {
+        res.send(res.locals.userType);
+    }
 
-export async function update(userType) {
-    return userTypeService.update(userType)
-}
+    static deleteById(req, res) {
+        userTypeService.deleteById(res.locals.userType).then(res.sendStatus(204))
+    }
 
-export async function deleteById(userType) {
-    return userTypeService.deleteById(userType)
+    static async update(req, res) {
+        const data = {
+            "id": res.locals.userType["id"],
+            "description": req.body["description"]
+        }
+        res.send(await userTypeService.update(data))
+    }
+
 }

@@ -1,10 +1,10 @@
 # Adm Backend
 - Node v18.17
-- Yarn Package Manager
+- NPM
 - Express
 - JWT
 - Prisma
-- MongoDB
+- Postgres
 
 ### Padrão de issue
 * DOCB{id} - {Titulo}

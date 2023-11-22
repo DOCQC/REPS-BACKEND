@@ -19,14 +19,14 @@ model UserType {
 }
 
 model User {
-  id             Int         @id @default(autoincrement())
-  phome_number   String      @unique
-  typer_users_id Int
-  typer_user     UserType    @relation(fields: [typer_users_id], references: [id])
-  email          String      @unique
-  password       String      @unique
-  enterprise     Enterprise?
-  professor      Professor?
+  id           Int         @id @default(autoincrement())
+  phone_number String      @unique
+  user_type_id Int
+  user_type    UserType    @relation(fields: [user_type_id], references: [id])
+  email        String      @unique
+  password     String
+  enterprise   Enterprise?
+  professor    Professor?
 
   @@map("user")
 }

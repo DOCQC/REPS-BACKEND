@@ -15,17 +15,17 @@ userTypeRouter.post("/",
 )
 
 userTypeRouter.get("/:id",
-    userTypeErrorHandler.exists,
+    userTypeErrorHandler.exists(false),
     UserTypeController.findById
 )
 
 userTypeRouter.delete("/:id",
-    userTypeErrorHandler.exists,
+    userTypeErrorHandler.exists(false),
     UserTypeController.deleteById
 )
 
 userTypeRouter.put("/:id",
-    userTypeErrorHandler.exists,
+    userTypeErrorHandler.exists(false),
     requestBodyValidator(userTypeSchema),
     UserTypeController.update
 )

@@ -6,7 +6,7 @@ export class UserTypeController {
         const queryParam = req.query
         const data = {
             "description": queryParam["description"],
-            "skip": queryParam["pg"]== null? 0 : ( Number(queryParam["qt"]) * (Number(queryParam["pg"]) - 1) ),
+            "skip": queryParam["pg"] == null? 0 : ( Number(queryParam["qt"]) * (Number(queryParam["pg"]) - 1) ),
             "take": queryParam["qt"] == null? 100 : Number(queryParam["qt"])
         }
         res.send(await userTypeService.findAll(data));

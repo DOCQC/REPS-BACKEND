@@ -1,11 +1,13 @@
 import { Router } from "express";
 import { UserController } from "../controllers/userController.js";
 import { requestBodyValidator } from "../middlewares/json/requestBodyValidator.js"
-//import { userSchema } from "../middlewares/json/schemas/userSchema.js";
+import * as userSchema  from "../middlewares/json/schemas/userSchema.js";
 import * as userErrorHandler from "../middlewares/exceptions/userErrorHandler.js";
 import * as userTypeErrorHandler from "../middlewares/exceptions/userTypeErrorHandler.js";
+
+
 export const userRouter = new Router();
-//TODO userSchema.post e userSchema.put
+
 userRouter.get("/",
     UserController.findAll
 )

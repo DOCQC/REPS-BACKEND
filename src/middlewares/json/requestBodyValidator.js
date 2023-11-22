@@ -1,5 +1,7 @@
 import Ajv from "ajv"
+import addFormats from "ajv-formats"
 const ajv = new Ajv();
+addFormats(ajv)
 
 export const requestBodyValidator = function(schema) {
     const validate = ajv.compile(schema)
@@ -9,7 +11,7 @@ export const requestBodyValidator = function(schema) {
         if (!valid) {
             const resBody = validate.errors[0]
             let error = new Error(resBody["message"])
-            error.cause = resBody["params"]
+            error.cause = resBody["instancePath"]
             error.statusCode = 400
 
             next(error)

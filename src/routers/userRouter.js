@@ -11,7 +11,7 @@ userRouter.get("/",
 )
 
 userRouter.post("/",
-    //requestBodyValidator(userSchema.post),
+    requestBodyValidator(userSchema.post),
     userTypeErrorHandler.exists(true),
     UserController.create
 )
@@ -28,7 +28,7 @@ userRouter.delete("/:id",
 
 userRouter.put("/:id",
     userErrorHandler.exists(false),
-    //requestBodyValidator(userSchema.put),
+    requestBodyValidator(userSchema.put),
     userTypeErrorHandler.exists(true),
     UserController.update
 )

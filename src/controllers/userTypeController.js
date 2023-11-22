@@ -12,8 +12,16 @@ export class UserTypeController {
         res.send(await userTypeService.findAll(data));
 
     }
-    static async create(req, res) {
-        res.status(201).send(await userTypeService.create(req.body));
+    static async create(req, res, next) {
+        try {
+            const userType = await userTypeService.create(req.body)
+            res.status(201).send(userType)
+        } catch(err) {
+            let serviceError = new Error(err.message);
+            serviceError.cause = err.meta
+            serviceError.statusCode = 400
+            next(serviceError)
+        }
     }
 
     static findById(req, res) {
@@ -24,12 +32,20 @@ export class UserTypeController {
         userTypeService.deleteById(res.locals.userType).then(res.sendStatus(204))
     }
 
-    static async update(req, res) {
+    static async update(req, res, next) {
         const data = {
             "id": res.locals.userType["id"],
             "description": req.body["description"]
         }
-        res.send(await userTypeService.update(data))
+        try {
+            const userType = await userTypeService.update(data)
+            res.send(userType)
+        } catch(err) {
+            let serviceError = new Error(err.message);
+            serviceError.cause = err.meta
+            serviceError.statusCode = 400
+            next(serviceError)
+        }
     }
 
 }

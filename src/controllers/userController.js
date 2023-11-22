@@ -27,8 +27,16 @@ export class UserController {
         res.send(await userService.findAll(query));
 
     }
-    static async create(req, res) {
-        res.status(201).send(await userService.create(req.body));
+    static async create(req, res, next) {
+        try {
+            const user = await userService.create(req.body)
+            res.status(201).send(user);
+        } catch(err) {
+            let serviceError = new Error(err.message);
+            serviceError.cause = err.meta
+            serviceError.statusCode = 400
+            next(serviceError)
+        }
     }
 
     static findById(req, res) {
@@ -39,7 +47,7 @@ export class UserController {
         userService.deleteById(res.locals.user).then(res.sendStatus(204))
     }
 
-    static async update(req, res) {
+    static async update(req, res, next) {
         const data = {
             "id": res.locals.user["id"],
             "phone_number": req.body["phone_number"],
@@ -47,7 +55,15 @@ export class UserController {
             "email": req.body["email"],
             "password": req.body["password"]
         }
-        res.send(await userService.update(data))
+        try {
+            const user = await userService.update(data)
+            res.send(user)
+        } catch(err) {
+            let serviceError = new Error(err.message);
+            serviceError.cause = err.meta
+            serviceError.statusCode = 400
+            next(serviceError)
+        }
     }
 
 }

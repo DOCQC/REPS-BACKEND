@@ -15,5 +15,6 @@ export const exists = function(isAttribute) {
             res.locals.userType = userType
         }
 
-    next()
+        next()
+    }
 }

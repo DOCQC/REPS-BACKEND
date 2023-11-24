@@ -8,7 +8,7 @@ export const exists = function(isAttribute) {
             const userType = await userTypeService.findById(id)
             if (userType == null) {
                 let error = new Error("required user type doesn't exists.")
-                error.cause = "required user type doesn't exist."
+                error.cause = "required user type doesn't exists."
                 error.statusCode = 404
                 next(error)
             }

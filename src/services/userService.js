@@ -21,7 +21,9 @@ export async function create(data) {
     return prisma.user.create({
         data: {
             phone_number: data["phone_number"],
-            user_type_id: data["user_type_id"],
+            user_type: {
+                connect: {id: data["user_type_id"]}
+            },
             email: data["email"],
             password: data["password"]
         },
@@ -36,7 +38,9 @@ export async function update(data) {
         },
         data: {
             phone_number: data["phone_number"],
-            user_type_id: data["user_type_id"],
+            user_type: {
+                connect: {id: data["user_type_id"]}
+            },
             email: data["email"],
             password: data["password"]
         },

@@ -20,7 +20,9 @@ export const post = {
         },
         "password": {
             "description": "User's password. Does have a regex.",
-            "type": "string"
+            "type": "string",
+            "format": "regex",
+            "pattern": "^(?=.*\\d)(?=.*[A-Z])(?=.*[a-z])[\\da-zA-Z].{7,}$"
         }
     },
     required: ["phone_number", "user_type_id", "email", "password"]
@@ -48,7 +50,9 @@ export const put = {
         },
         "password": {
             "description": "User's password. Does have a regex.",
-            "type": "string"
+            "type": "string",
+            "format": "regex",
+            "pattern": "^(?=.*\\d)(?=.*[A-Z])(?=.*[a-z])[\\da-zA-Z].{7,}$"
         }
     }
 }

@@ -12,6 +12,7 @@ export const requestBodyValidator = function(schema) {
 
         if (!valid) {
             const resBody = validate.errors[0]
+
             let error = new Error(resBody["message"])
             error.cause = resBody["instancePath"]
             error.statusCode = 400

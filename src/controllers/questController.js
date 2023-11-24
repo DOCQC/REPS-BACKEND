@@ -1,5 +1,10 @@
+import * as questService from "../services/questService.js"
 export class QuestController  {
-    static async findAll(req, res){
-        
+    
+    static findById(req, res) {
+        const id = req.params.id      
+        res.send(questService.findById(id));
     }
+
+
 }

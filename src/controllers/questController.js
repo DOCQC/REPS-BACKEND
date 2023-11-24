@@ -12,9 +12,11 @@ export class QuestController  {
         try {
             const result = await questService.create(req.body)
             res.status(201).send(result)
-        } catch(error) {
-            
-            next(error)
+        } catch(err) {
+            let serviceError = new Error(err.message);
+            serviceError.cause = err.meta
+            serviceError.statusCode = 400
+            next(serviceError)
         }
         
     }

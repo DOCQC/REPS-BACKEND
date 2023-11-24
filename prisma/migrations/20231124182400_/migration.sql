@@ -9,8 +9,8 @@ CREATE TABLE "user_type" (
 -- CreateTable
 CREATE TABLE "user" (
     "id" SERIAL NOT NULL,
-    "phome_number" TEXT NOT NULL,
-    "typer_users_id" INTEGER NOT NULL,
+    "phone_number" TEXT NOT NULL,
+    "user_type_id" INTEGER NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
 
@@ -34,7 +34,7 @@ CREATE TABLE "enterprise" (
 CREATE TABLE "quest" (
     "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
-    "decription" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
     "enterprise_id" INTEGER NOT NULL,
 
     CONSTRAINT "quest_pkey" PRIMARY KEY ("id")
@@ -98,13 +98,10 @@ CREATE TABLE "_AreaOfExpertiseToQuest" (
 CREATE UNIQUE INDEX "user_type_description_key" ON "user_type"("description");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "user_phome_number_key" ON "user"("phome_number");
+CREATE UNIQUE INDEX "user_phone_number_key" ON "user"("phone_number");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "user_email_key" ON "user"("email");
-
--- CreateIndex
-CREATE UNIQUE INDEX "user_password_key" ON "user"("password");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "enterprise_cpnj_key" ON "enterprise"("cpnj");
@@ -134,7 +131,7 @@ CREATE UNIQUE INDEX "_AreaOfExpertiseToQuest_AB_unique" ON "_AreaOfExpertiseToQu
 CREATE INDEX "_AreaOfExpertiseToQuest_B_index" ON "_AreaOfExpertiseToQuest"("B");
 
 -- AddForeignKey
-ALTER TABLE "user" ADD CONSTRAINT "user_typer_users_id_fkey" FOREIGN KEY ("typer_users_id") REFERENCES "user_type"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "user" ADD CONSTRAINT "user_user_type_id_fkey" FOREIGN KEY ("user_type_id") REFERENCES "user_type"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "enterprise" ADD CONSTRAINT "enterprise_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

@@ -30,6 +30,14 @@ import * as areaOfExpertise from "../../services/areaOfExpertiseService.js"
 
 export const existAtribbutes = async function(error, req, res, next){
 
+    console.log(error instanceof Error)
+    console.log(error)
+
+    if(error instanceof Error) {
+        console.log("entrei aqui")
+        next(error)
+    }
+
     const newErrorMessage = {
         message: null,
         statusCode: 404,

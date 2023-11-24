@@ -9,3 +9,11 @@ export async function findById(id){
         }
     })
 }
+
+export async function create(data) {
+    return await prisma.areaOfExpertise.create({
+       data: {
+        description: "Mestre dos Magos"
+       }
+ })
+}

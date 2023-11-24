@@ -17,5 +17,3 @@ questRouter.post("/",
     QuestController.create
 )
 
-
-questRouter.use(questErrorHandler.existAtribbutes)

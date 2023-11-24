@@ -4,20 +4,19 @@ export class QuestController  {
     
     static async findById(req, res) {
         const id = req.params.id      
-        res.send(questService.findById(id));
+        res.send(questService.findById(Number(id)));
     }
 
-    static async create(req, res) {
+    static async create(req, res, next) {
     
         try {
             const result = await questService.create(req.body)
             res.status(201).send(result)
         } catch(error) {
-            console.log(error)
-            res.status(400).send(error)
+            
+            next(error)
         }
         
-      
     }
 
 }

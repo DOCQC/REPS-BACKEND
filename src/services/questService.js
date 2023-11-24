@@ -9,3 +9,10 @@ export async function findById(id){
         }
     })
 }
+
+export async function create(data) {
+    return prisma.quest.create({
+        data
+    })
+
+}

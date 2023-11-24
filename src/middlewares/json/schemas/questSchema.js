@@ -1,20 +1,41 @@
 export const questShcema = {
-    title: "Quests schemas",
-    descriotion: "Need title, description, enterprise and area of expertise",
-    type: "object",
-    properties:{
+    "title": "Quests schemas",
+    "type": "object",
+    "properties": {
         "title": {
             "description": "title of quest",
-            "type":"string"
+            "type": "string"
         },
-        "description" :{
-            "description" : "description of quest",
-            "type" : "string"
+        "description": {
+            "description": "description of quest",
+            "type": "string"
         },
-        "enterpriseId":{
-            "description": "enterprise id",
-            "type" : "number"
+        "enterprise": {
+            "type": "object",
+            "properties": {
+                "connect": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "number"
+                        }
+                    }
+                }
+            }
+        },
+        "area_of_expertise": {
+            "type": "object",
+            "properties": {
+                "connect": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "number"
+                        }
+                    }
+                }
+            }
         }
-
-    }
+    },
+    "required": ["title", "description", "enterprise", "area_of_expertise"]
 }

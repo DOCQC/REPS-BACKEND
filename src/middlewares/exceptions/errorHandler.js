@@ -1,3 +1,3 @@
-export const errorHandler = function (error, req, res, next) {
-    res.status(error.statusCode).send({"message": error.message})
+export const errorHandler = function (err, req, res, next) {
+    res.status(err.statusCode).send({"message": err.message, "cause": err.cause})
 }

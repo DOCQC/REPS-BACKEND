@@ -22,7 +22,7 @@ export const post = {
             "description": "User's password. Does have a regex.",
             "type": "string",
             "format": "regex",
-            "pattern": "^(?=.*\\d)(?=.*[A-Z])(?=.*[a-z])[\\da-zA-Z].{7,}$"
+            "pattern": "^(?=.*\\d)(?=.*[A-Z])(?=.*[a-z])[\\da-zA-Z].{7,254}$"
         }
     },
     required: ["phone_number", "user_type_id", "email", "password"]

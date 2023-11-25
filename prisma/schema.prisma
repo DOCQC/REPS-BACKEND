@@ -84,15 +84,19 @@ model Lab {
   name         String @unique
   abbreviation String @unique
   url_img      String @unique
-  descripition String
+  description  String
 
   laboratory_expertise LaboratoryExpertise[]
+  TeamLab              TeamLab[]
 }
 
 model TeamLab {
-  id         Int         @id @default(autoincrement())
-  accountble Boolean
-  professor  Professor[]
+  id          Int     @id @default(autoincrement())
+  lab_id      Int
+  lab         Lab     @relation(fields: [lab_id], references: [id])
+  accountable Boolean
+
+  professor Professor[]
 }
 
 model Professor {

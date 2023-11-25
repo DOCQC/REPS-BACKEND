@@ -5,7 +5,9 @@ export const userTypeSchema = {
     properties: {
         "description": {
             "description": "description of the type",
-            "type": "string"
+            "type": "string",
+            "format": "regex",
+            "pattern": "^.{1,255}$"
         }
     },
     required: ["description"]

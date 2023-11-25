@@ -9,7 +9,14 @@ export const questErrorHandler = function (err, req, res, next) {
         statusCode: null
     }
     if(err.code == "P2025"){
+       
         renameMessageErro(serviceError, err, req) 
+    }
+
+    if(err.code == "P2016"){
+        serviceError.cause = "Desafio não encontrado"
+        serviceError.message = "Desafio não encontrado"
+        serviceError.statusCode = 404
     }
 
     next(serviceError)

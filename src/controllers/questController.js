@@ -87,7 +87,10 @@ export class QuestController  {
             const data =  {
                 id: req.params.id,
                 ...req.body
-            }     
+            }   
+            
+            
+            
             const result = await questService.update(data) 
             res.status(200).send(result)
         }catch(err) {

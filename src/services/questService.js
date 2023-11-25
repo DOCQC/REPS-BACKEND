@@ -24,7 +24,6 @@ export async function findAll(data){
 }
 
 export async function update(data) {
-   
 
     return await prisma.quest.update({
         where: {

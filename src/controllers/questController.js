@@ -1,10 +1,10 @@
 
 
 import * as questService from "../services/questService.js"
-export class QuestController  {
-    
+export class QuestController {
+
     static async findById(req, res) {
-        const id = req.params.id      
+        const id = req.params.id
         res.send(questService.findById(Number(id)));
     }
 
@@ -12,22 +12,22 @@ export class QuestController  {
         const queryParam = req.query
 
         const pagination = {
-            skip: queryParam["pg"] == null? 0 : ( Number(queryParam["qt"]) * (Number(queryParam["pg"]) - 1) ),
-            take: queryParam["qt"] == null? 100 : Number(queryParam["qt"]),
+            skip: queryParam["pg"] == null ? 0 : (Number(queryParam["qt"]) * (Number(queryParam["pg"]) - 1)),
+            take: queryParam["qt"] == null ? 100 : Number(queryParam["qt"]),
         }
 
-        const  filter = {
+        const filter = {
             where: {
                 title: {
                     startsWith: req.query["title"]
                 },
-                description:{
+                description: {
                     startsWith: req.query["description"]
                 },
                 area_of_expertise: {
                     every: {
-                        description:  {
-                            startsWith:  queryParam["area_of_expertise"],
+                        description: {
+                            startsWith: queryParam["area_of_expertise"],
                             mode: 'insensitive',
                         }
                     }
@@ -47,19 +47,19 @@ export class QuestController  {
             include: {
                 area_of_expertise: true,
                 enterprise: {
-                    select:{
+                    select: {
                         name: true,
                         id: true
                     }
                 }
             },
             ...pagination,
-           ...filter
+            ...filter
         }
-        
-        try { 
+
+        try {
             res.send(await questService.findAll(data));
-        }catch(err){
+        } catch (err) {
 
             let serviceError = new Error(err.message);
             serviceError.cause = err.meta
@@ -67,34 +67,32 @@ export class QuestController  {
 
             next(serviceError)
         }
-       
+
     }
 
     static async create(req, res, next) {
-    
+
         try {
             const result = await questService.create(req.body)
             res.status(201).send(result)
-        } catch(err) {
-           
+        } catch (err) {
+
             next(err)
         }
-        
+
     }
 
     static async update(req, res, next) {
         try {
-            const data =  {
+            const data = {
                 id: req.params.id,
                 ...req.body
-            }   
-            
-            
-            
-            const result = await questService.update(data) 
+            }
+
+            const result = await questService.update(data)
             res.status(200).send(result)
-        }catch(err) {
-           
+        } catch (err) {
+
             next(err)
         }
     }
@@ -105,7 +103,7 @@ export class QuestController  {
             await questService.deleteById(Number(req.params.id))
             res.sendStatus(204)
 
-        } catch(err) {
+        } catch (err) {
             next(err)
         }
 

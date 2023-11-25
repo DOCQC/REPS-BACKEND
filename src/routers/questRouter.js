@@ -1,14 +1,14 @@
 
-import {Router } from "express"
+import { Router } from "express"
 import { QuestController } from "../controllers/questController.js";
-import * as  questShcema  from "../middlewares/json/schemas/questSchema.js";
+import * as  questShcema from "../middlewares/json/schemas/questSchema.js";
 import { requestBodyValidator } from "../middlewares/json/requestBodyValidator.js";
 import { questErrorHandler } from "../middlewares/exceptions/questErrorController.js";
 
 export const questRouter = new Router();
 
-questRouter.get("/", 
-QuestController.findAll
+questRouter.get("/",
+    QuestController.findAll
 )
 
 questRouter.get("/:id",
@@ -25,7 +25,7 @@ questRouter.put("/:id",
     QuestController.update
 )
 
-questRouter.delete("/:id", 
+questRouter.delete("/:id",
     QuestController.delete
 )
 

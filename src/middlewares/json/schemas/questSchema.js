@@ -10,34 +10,16 @@ export const post = {
             "description": "description of quest",
             "type": "string"
         },
-        "enterprise": {
-            "type": "object",
-            "properties": {
-                "connect": {
-                    "type": "object",
-                    "properties": {
-                        "id": {
-                            "type": "number"
-                        }
-                    }
-                }
-            }
+        "enterprise_id": {
+            "type": "number",
+
         },
-        "area_of_expertise": {
-            "type": "object",
-            "properties": {
-                "connect": {
-                    "type": "object",
-                    "properties": {
-                        "id": {
-                            "type": "number"
-                        }
-                    }
-                }
-            }
+        "area_of_expertise_id": {
+            "type": "number",
+
         }
     },
-    "required": ["title", "description", "enterprise", "area_of_expertise"]
+    "required": ["title", "description", "enterprise_id", "area_of_expertise_id"]
 }
 
 export const put = {
@@ -52,31 +34,13 @@ export const put = {
             "description": "description of quest",
             "type": "string"
         },
-        "enterprise": {
-            "type": "object",
-            "properties": {
-                "connect": {
-                    "type": "object",
-                    "properties": {
-                        "id": {
-                            "type": "number"
-                        }
-                    }
-                }
-            }
+        "enterprise_id": {
+            "type": "number",
+
         },
-        "area_of_expertise": {
-            "type": "object",
-            "properties": {
-                "connect": {
-                    "type": "object",
-                    "properties": {
-                        "id": {
-                            "type": "number"
-                        }
-                    }
-                }
-            }
+        "area_of_expertise_id": {
+            "type": "number",
+
         }
     },
 }

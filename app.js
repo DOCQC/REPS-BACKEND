@@ -17,8 +17,8 @@ app.use(cors({
 app.use('/userTypes', userTypeRouter)
 app.use('/users', userRouter)
 app.use('/quests', questRouter)
-app.use('/areaOfExpertise', areaOfExpertiseRouter)
-app.use('/enterprise', enterpriseRouter)
+app.use('/areas-of-expertise', areaOfExpertiseRouter)
+app.use('/enterprises', enterpriseRouter)
 app.use(errorHandler)
 
 const port = 8000

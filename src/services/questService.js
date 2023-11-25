@@ -2,9 +2,9 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient({
     errorFormat: 'minimal',
-  });
+});
 
-export async function findById(id){
+export async function findById(id) {
     return await prisma.quest.findUnique({
         where: {
             id: id
@@ -13,13 +13,26 @@ export async function findById(id){
 }
 
 export async function create(data) {
-           return await prisma.quest.create({
-            data
-        })  
+    return await prisma.quest.create({
+        data: {
+            title: data["title"],
+            description: data["description"],
+            enterprise: {
+                connect: {
+                    id: data["enterprise_id"]
+                }
+            },
+            area_of_expertise: {
+                connect: {
+                    id: data["area_of_expertise_id"]
+                }
+            },
+        }
+    })
 }
 
-export async function findAll(data){
-  
+export async function findAll(data) {
+
     return await prisma.quest.findMany(data)
 }
 
@@ -30,7 +43,7 @@ export async function update(data) {
             id: Number(data["id"])
         },
         data: {
-            title:data["title"], 
+            title: data["title"],
             description: data["description"],
             enterprise: data["enterprise"],
             area_of_expertise: data["area_of_expertise"]

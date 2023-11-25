@@ -5,7 +5,6 @@ export class QuestController  {
     
     static async findById(req, res) {
         const id = req.params.id      
-        console.log("entrei aqui")
         res.send(questService.findById(Number(id)));
     }
 
@@ -58,7 +57,6 @@ export class QuestController  {
            ...filter
         }
         
-        
         try { 
             res.send(await questService.findAll(data));
         }catch(err){
@@ -78,12 +76,35 @@ export class QuestController  {
             const result = await questService.create(req.body)
             res.status(201).send(result)
         } catch(err) {
-            let serviceError = new Error(err.message);
-            serviceError.cause = err.meta
-            serviceError.statusCode = 400
-            next(serviceError)
+           
+            next(err)
         }
         
     }
 
+    static async update(req, res, next) {
+        try {
+            const data =  {
+                id: req.params.id,
+                ...req.body
+            }     
+            const result = await questService.update(data) 
+            res.status(200).send(result)
+        }catch(err) {
+           
+            next(err)
+        }
+    }
+
+    static async delete(req, res, next) {
+
+        try {
+            await questService.deleteById(Number(req.params.id))
+            res.sendStatus(204)
+
+        } catch(err) {
+            next(err)
+        }
+
+    }
 }

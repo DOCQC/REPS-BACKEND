@@ -1,7 +1,7 @@
 
 import { Router } from "express"
 import { QuestController } from "../controllers/questController.js";
-import * as  questShcema from "../middlewares/json/schemas/questSchema.js";
+import * as  questSchema from "../middlewares/json/schemas/questSchema.js";
 import { requestBodyValidator } from "../middlewares/json/requestBodyValidator.js";
 import { questErrorHandler } from "../middlewares/exceptions/questErrorController.js";
 
@@ -16,12 +16,12 @@ questRouter.get("/:id",
 )
 
 questRouter.post("/",
-    requestBodyValidator(questShcema.post),
+    requestBodyValidator(questSchema.post),
     QuestController.create
 )
 
 questRouter.put("/:id",
-    requestBodyValidator(questShcema.put),
+    requestBodyValidator(questSchema.put),
     QuestController.update
 )
 

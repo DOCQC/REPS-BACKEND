@@ -13,6 +13,9 @@ export class UserController {
                 startsWith: queryParam["email"]
             }
         }
+
+        console.log(filter.email)
+        console.log(filter.phone_number)
         const userTypeId = queryParam["user-type-id"]
         if (isNaN(userTypeId) === false) {
             filter["user_type_id"] = Number(queryParam["user-type-id"])

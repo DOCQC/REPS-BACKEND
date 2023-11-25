@@ -12,25 +12,16 @@ export async function findById(id){
 
 export async function create(data1) {
 
-    const data = {
-        name: "Elisson3irmãos",
-        accountable: "Elisson",
-        cpnj: "09174361309",
-        address: "Rua 15 casa 191",
-        isVisit: true,
-        user: 1
-    }
-
     return await prisma.enterprise.create({
         data:{
-            name: "Elisson3irmãos",
+            name: "Elisson2irmãos",
         accountable: "Elisson",
-        cpnj: "09174361309",
+        cpnj: "09374361309",
         address: "Rua 15 casa 191",
         isVisit: true,
         user: {
             connect: {
-                id: 1
+                id: 4
             }
         }
         }

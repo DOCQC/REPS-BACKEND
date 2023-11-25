@@ -13,6 +13,12 @@ export async function findById(id){
 export async function create(data) {
            return await prisma.quest.create({
             data
-        })
-   
+        })  
+}
+
+export async function findAll(data){
+    console.log("Fazendo a  consulta no banco")
+  
+
+    return await prisma.quest.findMany(data)
 }

@@ -5,11 +5,15 @@ import { requestBodyValidator } from "../middlewares/json/requestBodyValidator.j
 
 export const questRouter = new Router();
 
-questRouter.get("/")
+questRouter.get("/", 
+QuestController.findAll
+)
 
 questRouter.get("/:id",
     QuestController.findById
 )
+
+
 
 questRouter.post("/",
     requestBodyValidator(questShcema),

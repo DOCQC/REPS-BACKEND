@@ -22,7 +22,6 @@ export const questErrorHandler = function (err, req, res, next) {
 
 function renameMessageErro(serviceError, err, req) {
     const str = err.meta.cause.split(' ');
-    console.log(str)
     serviceError.cause = req.route.methods.delete ? "" : str[1]
     serviceError.message = req.route.methods.delete ? err.meta.cause : `required ${str[1]} doesn't exist`
     serviceError.statusCode = 400

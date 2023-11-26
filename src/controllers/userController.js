@@ -1,6 +1,5 @@
 import * as userService from "../services/userService.js"
 
-
 export class UserController {
     static async findAll(req, res) {
         const queryParam = req.query
@@ -13,14 +12,15 @@ export class UserController {
                 startsWith: queryParam["email"]
             }
         }
+
         const userTypeId = queryParam["user-type-id"]
         if (isNaN(userTypeId) === false) {
             filter["user_type_id"] = Number(queryParam["user-type-id"])
         }
 
         const query = {
-            skip: queryParam["pg"] == null? 0 : ( Number(queryParam["qt"]) * (Number(queryParam["pg"]) - 1) ),
-            take: queryParam["qt"] == null? 100 : Number(queryParam["qt"]),
+            skip: queryParam["pg"] == null ? 0 : (Number(queryParam["qt"]) * (Number(queryParam["pg"]) - 1)),
+            take: queryParam["qt"] == null ? 100 : Number(queryParam["qt"]),
             where: filter,
         }
 
@@ -31,7 +31,7 @@ export class UserController {
         try {
             const user = await userService.create(req.body)
             res.status(201).send(user);
-        } catch(err) {
+        } catch (err) {
             let serviceError = new Error(err.message);
             serviceError.cause = err.meta
             serviceError.statusCode = 400
@@ -58,7 +58,7 @@ export class UserController {
         try {
             const user = await userService.update(data)
             res.send(user)
-        } catch(err) {
+        } catch (err) {
             let serviceError = new Error(err.message);
             serviceError.cause = err.meta
             serviceError.statusCode = 400

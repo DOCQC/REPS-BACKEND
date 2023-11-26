@@ -3,7 +3,7 @@ import cors from 'cors';
 import { userTypeRouter } from "./src/routers/userTypeRouter.js";
 import { errorHandler } from "./src/middlewares/exceptions/errorHandler.js";
 import { userRouter } from "./src/routers/userRouter.js";
-import {labRouter} from "./src/routers/LabRouter.js";
+import {labRouter} from "./src/routers/labRouter.js";
 
 const app = express();
 

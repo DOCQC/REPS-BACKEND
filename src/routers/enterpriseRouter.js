@@ -5,10 +5,15 @@ import * as enterpriseSchema from "../middlewares/json/schemas/enterpriseSchema.
 
 export const enterpriseRouter = new Router();
 
+
+enterpriseRouter.put("/:id",
+    requestBodyValidator(enterpriseSchema.put),
+    enterpriseController.update
+)
 enterpriseRouter.post("/",
     requestBodyValidator(enterpriseSchema.post),
     enterpriseController.create
 )
 
 enterpriseRouter.get("/",
-enterpriseController.findAll )
+    enterpriseController.findAll)

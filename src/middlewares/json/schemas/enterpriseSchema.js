@@ -44,3 +44,28 @@ export const post = {
     },
     required: ["phone_number", "user_type_id", "email", "password", "name", "accountable", "cnpj", "address", "isVisit"]
 }
+
+export const put = {
+    title: "Post enterprise schema",
+    description: "Only quest attribute is not required",
+    type: "object",
+    properties: {
+        "name": {
+            "type": "string"
+        },
+        "accountable": {
+            "type": "string"
+        },
+        "cnpj": {
+            "type": "integer",
+            // "format": "regex",
+            // "patterm": "^(\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}|\\d{2}\\.\\d{3}\\.\\d{3}\\/\\d{4}\\-\\d{2})$"
+        },
+        "address": {
+            "type": "string"
+        },
+        "isVisit": {
+            "type": "boolean"
+        },
+    }
+}

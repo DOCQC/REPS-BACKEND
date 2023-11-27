@@ -1,6 +1,20 @@
 import * as enterpriseService from "../services/enterpriseService.js"
-export class enterpriseController  {
-    
+export class enterpriseController {
+    static async update(req, res, next) {
+        const data = {
+            id: req.params.id,
+            ...req.body
+        }
+        try {
+            const result = await enterpriseService.update(data)
+            res.status(200).send(result)
+        } catch (err) {
+            let serviceError = new Error(err.message);
+            serviceError.cause = err.meta
+            serviceError.statusCode = 400
+            next(serviceError)
+        }
+    }
     static async findAll(req, res, next) {
         const queryParam = req.query
 
@@ -10,7 +24,7 @@ export class enterpriseController  {
                 mode: 'insensitive',
             },
             accountable: {
-                startsWith:queryParam["accountable"],
+                startsWith: queryParam["accountable"],
                 mode: 'insensitive',
             },
             user: {
@@ -36,7 +50,7 @@ export class enterpriseController  {
             }
         }
 
-        try{
+        try {
             res.send(await enterpriseService.findAll(query))
         } catch (err) {
             let serviceError = new Error(err.message);
@@ -44,20 +58,22 @@ export class enterpriseController  {
             serviceError.statusCode = 400
             next(serviceError)
         }
-      
+
 
     }
 
-     static async create(req, res, next) {
+    static async create(req, res, next) {
         try {
             const result = await enterpriseService.create(req.body)
             res.status(201).send(result)
-        }catch(err) {
+        } catch (err) {
             let serviceError = new Error(err.message);
             serviceError.cause = err.meta
             serviceError.statusCode = 400
             next(serviceError)
         }
-        
+
     }
 }
+
+

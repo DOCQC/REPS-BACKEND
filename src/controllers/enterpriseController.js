@@ -2,7 +2,6 @@ import * as enterpriseService from "../services/enterpriseService.js"
 export class enterpriseController  {
     
      static async create(req, res, next) {
-        
         try {
             const result = await enterpriseService.create(req.body)
             res.status(201).send(result)

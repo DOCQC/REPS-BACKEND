@@ -9,3 +9,6 @@ enterpriseRouter.post("/",
     requestBodyValidator(enterpriseSchema.post),
     enterpriseController.create
 )
+
+enterpriseRouter.get("/",
+enterpriseController.findAll )

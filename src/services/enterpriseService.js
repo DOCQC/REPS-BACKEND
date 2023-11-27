@@ -10,6 +10,10 @@ export async function findById(id) {
     })
 }
 
+export async function findAll(data) {
+    return prisma.enterprise.findMany(data)
+}
+
 export async function create(data) {
 
     return await prisma.enterprise.create({

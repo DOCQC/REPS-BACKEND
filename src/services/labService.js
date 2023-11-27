@@ -47,6 +47,7 @@ export async function findById(id) {
     });
 }
 
+
 export async function create(data) {
 
    const laboratoryExpertisesCreated = formatTolaboratoryExpertisesCreated(data.laboratory_expertise["connect_are_of_expertise"])
@@ -57,8 +58,15 @@ export async function create(data) {
             name: data["name"],
             abbreviation: data["abbreviation"],
             url_img: data["url_img"],
-            laboratory_expertise: {
-                create: laboratoryExpertisesCreated
+            laboratory_expertise:{
+                create: {
+                    start_date: timestamp,
+                    area_of_expertise: {
+                        connect: { description: "Mestre das batatas"},
+                    }
+                }
+                
+           
             }
         },
     })

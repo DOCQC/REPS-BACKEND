@@ -21,6 +21,9 @@ export async function findAll(data) {
                 startsWith: data["url_img"]
             }
         },
+        include: {
+            laboratory_expertise: true
+        }
     })
 
 }
@@ -34,13 +37,27 @@ export async function findById(id) {
 
 }
 
+
 export async function create(data) {
+
+    const timestamp = new Date().toISOString()
+
     return prisma.lab.create({
         data: {
             description: data["description"],
             name: data["name"],
             abbreviation: data["abbreviation"],
-            url_img: data["url_img"]
+            url_img: data["url_img"],
+            laboratory_expertise:{
+                create: {
+                    start_date: timestamp,
+                    area_of_expertise: {
+                        connect: { description: "Mestre das batatas"},
+                    }
+                }
+                
+           
+            }
         },
     })
 

@@ -25,6 +25,18 @@ export const post = {
             "description": "Laboratory's picture url. Does have a regex.",
             "type": "string",
             "format": "uri"
+        },
+        "lab_expertise":{
+            "type": "object",
+            "properties" : {
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                "are_of_expertise":{
+                    "type": "string"
+                }
+            }
         }
     },
     required: ["description", "name", "abbreviation", "url_img"]

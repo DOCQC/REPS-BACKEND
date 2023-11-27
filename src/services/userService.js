@@ -5,7 +5,6 @@ const prisma = new PrismaClient()
 
 export async function findAll(data) {
     return prisma.user.findMany(data)
-
 }
 
 export async function findById(id) {

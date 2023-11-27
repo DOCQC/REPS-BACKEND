@@ -3,9 +3,13 @@ import cors from 'cors';
 import { userTypeRouter } from "./src/routers/userTypeRouter.js";
 import { errorHandler } from "./src/middlewares/exceptions/errorHandler.js";
 import { userRouter } from "./src/routers/userRouter.js";
+
+import {labRouter} from "./src/routers/labRouter.js";
+
 import { questRouter } from './src/routers/questRouter.js';
 import { areaOfExpertiseRouter } from './src/routers/areaOfExpertiseRouter.js';
 import { enterpriseRouter } from './src/routers/enterpriseRouter.js';
+
 
 const app = express();
 
@@ -14,11 +18,13 @@ app.use(cors({
     origin: '*'
 }));
 
-app.use('/userTypes', userTypeRouter)
+app.use('/user-types', userTypeRouter)
 app.use('/users', userRouter)
+app.use('/labs', labRouter)
 app.use('/quests', questRouter)
 app.use('/areas-of-expertise', areaOfExpertiseRouter)
 app.use('/enterprises', enterpriseRouter)
+
 app.use(errorHandler)
 
 const port = 8000

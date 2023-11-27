@@ -22,15 +22,15 @@ export const post = {
             "description": "User's password. Does have a regex.",
             "type": "string",
             "format": "regex",
-            "pattern": "^(?=.*\\d)(?=.*[A-Z])(?=.*[a-z])[\\da-zA-Z].{7,}$"
+            "pattern": "^(?=.*\\d)(?=.*[A-Z])(?=.*[a-z])[\\da-zA-Z].{7,254}$"
         }
     },
     required: ["phone_number", "user_type_id", "email", "password"]
 }
 
 export const put = {
-    title: "post user schema.",
-    description: "Needs every attribute. Phone-number and email have regexes",
+    title: "Put user schema.",
+    description: "Don't need every attribute. Phone-number, password and email have regexes",
     type: "object",
     properties: {
         "phone_number": {
@@ -52,7 +52,7 @@ export const put = {
             "description": "User's password. Does have a regex.",
             "type": "string",
             "format": "regex",
-            "pattern": "^(?=.*\\d)(?=.*[A-Z])(?=.*[a-z])[\\da-zA-Z].{7,}$"
+            "pattern": "^(?=.*\\d)(?=.*[A-Z])(?=.*[a-z])[\\da-zA-Z].{7,254}$"
         }
     }
 }

@@ -4,7 +4,7 @@ import { userTypeRouter } from "./src/routers/userTypeRouter.js";
 import { errorHandler } from "./src/middlewares/exceptions/errorHandler.js";
 import { userRouter } from "./src/routers/userRouter.js";
 
-import {labRouter} from "./src/routers/labRouter.js";
+import { labRouter } from "./src/routers/labRouter.js";
 
 import { questRouter } from './src/routers/questRouter.js';
 import { areaOfExpertiseRouter } from './src/routers/areaOfExpertiseRouter.js';

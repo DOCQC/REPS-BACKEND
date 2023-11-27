@@ -10,20 +10,20 @@ areaOfExpertiseRouter.post("/",
     areaOfExpertiseController.create
 )
 
-areaOfExpertiseRouter.get("/", 
+areaOfExpertiseRouter.get("/",
     areaOfExpertiseController.findAll
 )
 
-areaOfExpertiseRouter.get("/:id", 
+areaOfExpertiseRouter.get("/:id",
     areaOfExpertiseController.findById
 )
 
-areaOfExpertiseRouter.delete("/:id", 
+areaOfExpertiseRouter.delete("/:id",
     areaOfExpertiseController.delete
 )
 
 areaOfExpertiseRouter.put("/:id",
-requestBodyValidator(areaOfExpertiseSchema.put),
+    requestBodyValidator(areaOfExpertiseSchema.put),
     areaOfExpertiseController.update
 )
 

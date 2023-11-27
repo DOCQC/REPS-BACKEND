@@ -1,19 +1,17 @@
 
 import * as areaOfExpertiseService from "../services/areaOfExpertiseService.js"
-export class areaOfExpertiseController  {
-    
-     static async create(req, res, next) {
-        
+export class areaOfExpertiseController {
+
+    static async create(req, res, next) {
+
         try {
             const result = await areaOfExpertiseService.create(req.body)
             res.status(201).send(result)
-        } catch(error) {
-            let serviceError = new Error(error.message);
-            serviceError.cause = error.meta
-            serviceError.statusCode = 400
-            next(serviceError)
+        } catch (error) {
+
+            next(error)
         }
-        
+
     }
 
     static async findAll(req, res, next) {
@@ -29,25 +27,24 @@ export class areaOfExpertiseController  {
             where: filter,
         }
 
-        
+
         try {
             res.send(await areaOfExpertiseService.findAll(query))
-        }catch (err) {
+        } catch (err) {
 
             next(err)
         }
-       
 
     }
 
     static async findById(req, res) {
         const id = req.params.id
         try {
-            res.send( await areaOfExpertiseService.findById(Number(id)));
-        }catch (err) {
+            res.send(await areaOfExpertiseService.findById(Number(id)));
+        } catch (err) {
             next(err)
         }
-       
+
     }
 
     static async update(req, res, next) {

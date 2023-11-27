@@ -7,7 +7,7 @@ export async function findAll(data) {
     return prisma.areaOfExpertise.findMany(data)
 }
 
-export async function findById(id){
+export async function findById(id) {
     return await prisma.areaOfExpertise.findUnique({
         where: {
             id: id
@@ -17,10 +17,10 @@ export async function findById(id){
 
 export async function create(data) {
     return await prisma.areaOfExpertise.create({
-       data: {
-        description: data["description"]
-       }
- })
+        data: {
+            description: data["description"].toUpperCase()
+        }
+    })
 }
 
 export async function update(data) {
@@ -30,7 +30,7 @@ export async function update(data) {
         },
         data: {
             description: data["description"]
-           }
+        }
     })
 }
 

@@ -1,22 +1,28 @@
 export const areaOfExpertiseErrorHandler = function (err, req, res, next) {
-    
-    if(err.statusCode){
+
+    if (err.statusCode) {
         next(err)
     }
-  
+
     const serviceError = new Object()
 
-    const NotFoundInDelteOrPut = err.code == "P2025" && (req.route.methods.delete || req.route.methods.put)
+    if (err.code == "P2002") {
+        serviceError.cause = "O campo descrição deve ser unico"
+        serviceError.message = "O campo descrição deve ser unico"
+        serviceError.statusCode = 401
+    }
 
-    if(NotFoundInDelteOrPut){
+
+    const NotFoundInDelteOrPut = err.code == "P2025" && (req.route.methods.delete || req.route.methods.put)
+    if (NotFoundInDelteOrPut) {
         serviceError.cause = "Area de atuaca  não encontrado"
         serviceError.message = "Area de atuacao não encontrado"
         serviceError.statusCode = 404
     }
 
 
-    if(err.code == "P2025" && !req.route.methods.delete && !req.route.methods.put){
-        renameMessageErro(serviceError, err, req) 
+    if (err.code == "P2025" && !req.route.methods.delete && !req.route.methods.put) {
+        renameMessageErro(serviceError, err, req)
     }
 
     next(serviceError)
@@ -28,5 +34,5 @@ function renameMessageErro(serviceError, err, req) {
     serviceError.cause = str[1]
     serviceError.message = `required ${str[1]} doesn't exist`
     serviceError.statusCode = 400
-   
+
 }

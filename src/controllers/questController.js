@@ -5,7 +5,8 @@ export class QuestController {
 
     static async findById(req, res) {
         const id = req.params.id
-        res.send(questService.findById(Number(id)));
+
+         res.send(await questService.findById(Number(id)));
     }
 
     static async findAll(req, res, next) {
@@ -106,6 +107,5 @@ export class QuestController {
         } catch (err) {
             next(err)
         }
-
     }
 }

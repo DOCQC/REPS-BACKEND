@@ -1,5 +1,23 @@
 import * as enterpriseService from "../services/enterpriseService.js"
 export class enterpriseController {
+
+
+    static async findById(req, res) {
+        const id = req.params.id
+        res.send(await enterpriseService.findById(Number(id)));
+    }
+
+    static async delete(req, res, next) {
+        try {
+            await enterpriseService.deleteById(Number(req.params.id))
+            res.sendStatus(204)
+
+        } catch (err) {
+           
+            next(err)
+        }
+    }
+
     static async update(req, res, next) {
         const data = {
             id: req.params.id,
@@ -9,10 +27,7 @@ export class enterpriseController {
             const result = await enterpriseService.update(data)
             res.status(200).send(result)
         } catch (err) {
-            let serviceError = new Error(err.message);
-            serviceError.cause = err.meta
-            serviceError.statusCode = 400
-            next(serviceError)
+            next(err)
         }
     }
     static async findAll(req, res, next) {
@@ -58,8 +73,6 @@ export class enterpriseController {
             serviceError.statusCode = 400
             next(serviceError)
         }
-
-
     }
 
     static async create(req, res, next) {
@@ -67,10 +80,7 @@ export class enterpriseController {
             const result = await enterpriseService.create(req.body)
             res.status(201).send(result)
         } catch (err) {
-            let serviceError = new Error(err.message);
-            serviceError.cause = err.meta
-            serviceError.statusCode = 400
-            next(serviceError)
+            next(err)
         }
 
     }

@@ -2,7 +2,13 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-
+export async function deleteById(id) {
+    return prisma.enterprise.delete({
+        where: {
+            id: id
+        },
+    })
+}
 
 export async function update(data){
 

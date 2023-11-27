@@ -40,7 +40,7 @@ export async function findAll(data) {
 }
 
 export async function create(data) {
-
+    const ENTERPRISE = Number(process.env.ROLE_ENTERPRISE)
     return await prisma.enterprise.create({
         data: {
             name: data["name"],
@@ -52,7 +52,7 @@ export async function create(data) {
                 create: {
                     phone_number: data["phone_number"],
                     user_type: {
-                        connect: {id: data["user_type_id"]}
+                        connect: {id: ENTERPRISE}
                     },
                     email: data["email"],
                     password: data["password"]

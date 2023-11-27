@@ -1,5 +1,11 @@
 export const enterpriseErrorHandler = function (err, req, res, next) {
     
+
+    if(err.statusCode){
+        next(err)
+    }
+  
+
     const serviceError = new Object()
 
     const NotFoundInDelteOrPut = err.code == "P2025" && (req.route.methods.delete || req.route.methods.put)
@@ -7,6 +13,13 @@ export const enterpriseErrorHandler = function (err, req, res, next) {
     if(NotFoundInDelteOrPut){
         serviceError.cause = "Empresa não encontrado"
         serviceError.message = "Empresa não encontrado"
+        serviceError.statusCode = 404
+    }
+
+
+    if(err.code == "P2002"){
+        serviceError.cause = `${err.meta.target[0]}`
+        serviceError.message = `O ${err.meta.target[0]} deve ser único`
         serviceError.statusCode = 404
     }
 

@@ -10,9 +10,9 @@ export const post = {
             "type": "string"
         },
         "cnpj": {
-            "type": "integer",
-            // "format": "regex",
-            // "patterm": "^(\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}|\\d{2}\\.\\d{3}\\.\\d{3}\\/\\d{4}\\-\\d{2})$"
+            "type": "string",
+            "format": "regex",
+            "pattern": "^\\d{14}$"
         },
         "address": {
             "type": "string"
@@ -26,10 +26,7 @@ export const post = {
             "format": "regex",
             "pattern": "^(?:\\([1-9]{2}\\)|[1-9]{2})[-.\\s]?9?[6-9]\\d{3}[-.\\s]?\\d{4}$"
         },
-        "user_type_id": {
-            "description": "User's type foreign key.",
-            "type": "integer"
-        },
+     
         "email": {
             "description": "User's email. Does have a regex.",
             "type": "string",
@@ -57,9 +54,9 @@ export const put = {
             "type": "string"
         },
         "cnpj": {
-            "type": "integer",
-            // "format": "regex",
-            // "patterm": "^(\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}|\\d{2}\\.\\d{3}\\.\\d{3}\\/\\d{4}\\-\\d{2})$"
+            "type": "string",
+            "format": "regex",
+            "pattern": "^\\d{14}$"
         },
         "address": {
             "type": "string"

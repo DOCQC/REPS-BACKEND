@@ -60,9 +60,13 @@ export class enterpriseController {
             skip: queryParam["pg"] == null ? 0 : (Number(queryParam["qt"]) * (Number(queryParam["pg"]) - 1)),
             take: queryParam["qt"] == null ? 100 : Number(queryParam["qt"]),
             where: filter,
-            include: {
-                user: true
-            }
+           
+        }
+
+
+        const verbose = queryParam["verbose"] != null
+        if (verbose) {
+            query["include"] = {"user": true}
         }
 
         try {
@@ -80,6 +84,7 @@ export class enterpriseController {
             const result = await enterpriseService.create(req.body)
             res.status(201).send(result)
         } catch (err) {
+           
             next(err)
         }
 

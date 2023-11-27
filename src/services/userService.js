@@ -54,5 +54,4 @@ export async function deleteById(data) {
             id: data["id"]
         },
     })
-
 }

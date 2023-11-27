@@ -50,7 +50,7 @@ model Enterprise {
 model Quest {
   id                Int               @id @default(autoincrement())
   title             String
-  decription        String
+  description        String
   enterprise_id     Int
   enterprise        Enterprise        @relation(fields: [enterprise_id], references: [id])
   area_of_expertise AreaOfExpertise[]

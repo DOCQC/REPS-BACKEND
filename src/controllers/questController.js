@@ -1,13 +1,14 @@
-
-
 import * as questService from "../services/questService.js"
 export class QuestController {
 
     static async findById(req, res) {
         const id = req.params.id
 
-         res.send(await questService.findById(Number(id)));
-    }
+        try {
+            res.send( await questService.findById(Number(id)));
+        }catch(err){   
+        }  
+
 
     static async findAll(req, res, next) {
         const queryParam = req.query
@@ -61,11 +62,6 @@ export class QuestController {
         try {
             res.send(await questService.findAll(data));
         } catch (err) {
-
-            let serviceError = new Error(err.message);
-            serviceError.cause = err.meta
-            serviceError.statusCode = 400
-
             next(serviceError)
         }
 
@@ -77,7 +73,7 @@ export class QuestController {
             const result = await questService.create(req.body)
             res.status(201).send(result)
         } catch (err) {
-            
+
             next(err)
         }
 

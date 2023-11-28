@@ -60,7 +60,7 @@ model Quest {
 
 model AreaOfExpertise {
   id                   Int                   @id @default(autoincrement())
-  description          String
+  description          String                 @unique
   quest                Quest[]
   laboratory_expertise LaboratoryExpertise[]
 

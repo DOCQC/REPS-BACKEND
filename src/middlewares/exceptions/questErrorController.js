@@ -1,13 +1,10 @@
 
-
-
 export const questErrorHandler = function (err, req, res, next) {
     
     const serviceError = new Object()
     if(err.code == "P2025"){
         renameMessageErro(serviceError, err, req) 
     }
-
 
     if(err.code == "P2016"){
         serviceError.cause = "Quest"
@@ -18,7 +15,6 @@ export const questErrorHandler = function (err, req, res, next) {
     next(serviceError)
 
 }
-
 
 function renameMessageErro(serviceError, err, req) {
     const str = err.meta.cause.split(' ');

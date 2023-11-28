@@ -21,6 +21,9 @@ export async function findAll(data) {
                 startsWith: data["url_img"]
             }
         },
+        include: {
+            laboratory_expertise:true
+        }
     })
 
 }

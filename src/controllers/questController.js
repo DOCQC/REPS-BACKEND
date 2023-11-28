@@ -7,7 +7,9 @@ export class QuestController {
         try {
             res.send( await questService.findById(Number(id)));
         }catch(err){   
+            next(err)
         }  
+    }
 
 
     static async findAll(req, res, next) {
@@ -44,7 +46,7 @@ export class QuestController {
             },
 
         }
-
+    
         const data = {
             include: {
                 area_of_expertise: true,

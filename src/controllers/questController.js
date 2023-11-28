@@ -73,10 +73,6 @@ export class QuestController {
             const result = await questService.create(req.body)
             res.status(201).send(result)
         } catch (err) {
-<<<<<<< HEAD
-            
-=======
->>>>>>> 34d351f (fix(DOCB013): add CRUD)
             next(err)
         }
 

@@ -71,3 +71,11 @@ Depois de instalado os pacotes e a conexão feita com banco, deve-se colocar o s
 ```
 npx prisma migrate dev
 ```
+
+### Obeservação 
+Para que o sistema funcione corretamente, é necessário adicionar a variável ```ROLE_ENTERPRISE`````` no arquivo ```.env``` com o valor 2 atribuído. A imagem abaixo ilustra como fazer isso
+
+![Alt text](image.png)
+
+Depois adicionar uma entidade de tipo de usuário no banco de dados com id 2,
+

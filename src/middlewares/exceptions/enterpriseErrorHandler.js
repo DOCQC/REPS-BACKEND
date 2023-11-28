@@ -8,26 +8,26 @@ export const enterpriseErrorHandler = function (err, req, res, next) {
 
     const serviceError = new Object()
 
-    const NotFoundInDelteOrPut = err.code == "P2025" && (req.route.methods.delete || req.route.methods.put)
+    const NotFoundInDeleteOrPut = err.code == "P2025" && (req.route.methods.delete || req.route.methods.put)
 
-    if(NotFoundInDelteOrPut){
-        serviceError.cause = "Empresa não encontrado"
-        serviceError.message = "Empresa não encontrado"
+    if(NotFoundInDeleteOrPut){
+        serviceError.cause = "Enterprise"
+        serviceError.message = "Enterprise not found"
         serviceError.statusCode = 404
     }
 
 
     if(err.code == "P2002"){
         serviceError.cause = `${err.meta.target[0]}`
-        serviceError.message = `O ${err.meta.target[0]} deve ser único`
-        serviceError.statusCode = 404
+        serviceError.message = `THe ${err.meta.target[0]} must be unique`
+        serviceError.statusCode = 401
     }
 
     if(err.code == "P2025" && !req.route.methods.delete && !req.route.methods.put){
         renameMessageErro(serviceError, err, req) 
     }
 
-    next(serviceError)
+    next(serviceError)  
 
 }
 

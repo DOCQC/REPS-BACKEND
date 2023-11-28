@@ -8,7 +8,7 @@ export class QuestController {
             res.send( await questService.findById(Number(id)));
         }catch(err){   
         }  
-    }
+
 
     static async findAll(req, res, next) {
         const queryParam = req.query
@@ -73,6 +73,7 @@ export class QuestController {
             const result = await questService.create(req.body)
             res.status(201).send(result)
         } catch (err) {
+
             next(err)
         }
 

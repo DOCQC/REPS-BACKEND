@@ -73,6 +73,7 @@ export class QuestController {
             const result = await questService.create(req.body)
             res.status(201).send(result)
         } catch (err) {
+            
             next(err)
         }
 
@@ -102,6 +103,5 @@ export class QuestController {
         } catch (err) {
             next(err)
         }
-
     }
 }

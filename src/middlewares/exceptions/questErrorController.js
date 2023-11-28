@@ -7,8 +7,8 @@ export const questErrorHandler = function (err, req, res, next) {
     }
 
     if(err.code == "P2016"){
-        serviceError.cause = "Desafio não encontrado"
-        serviceError.message = "Desafio não encontrado"
+        serviceError.cause = "Quest"
+        serviceError.message = "Quest not found"
         serviceError.statusCode = 404
     }
 

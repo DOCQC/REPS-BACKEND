@@ -3,6 +3,9 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export async function findAll(data) {
+
+
+
     return prisma.lab.findMany({
         skip: data["skip"],
         take: data["take"],
@@ -20,9 +23,11 @@ export async function findAll(data) {
                 startsWith: data["url_img"]
             },
             laboratory_expertise: {
-                some: {
+                every: {
                     area_of_expertise: {
-                        description: data["area_of_expertise"]?.toUpperCase()?.trim()
+                        description:{
+                            startsWith:data["area_of_expertise"]?.toUpperCase()?.trim()
+                        }
                 }
             }
             }

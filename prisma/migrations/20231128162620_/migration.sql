@@ -22,7 +22,7 @@ CREATE TABLE "enterprise" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "accountable" TEXT NOT NULL,
-    "cpnj" TEXT NOT NULL,
+    "cnpj" TEXT NOT NULL,
     "address" TEXT NOT NULL,
     "isVisit" BOOLEAN NOT NULL,
     "user_id" INTEGER NOT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE "Lab" (
     "name" TEXT NOT NULL,
     "abbreviation" TEXT NOT NULL,
     "url_img" TEXT NOT NULL,
-    "descripition" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
 
     CONSTRAINT "Lab_pkey" PRIMARY KEY ("id")
 );
@@ -72,7 +72,8 @@ CREATE TABLE "Lab" (
 -- CreateTable
 CREATE TABLE "TeamLab" (
     "id" SERIAL NOT NULL,
-    "accountble" BOOLEAN NOT NULL,
+    "lab_id" INTEGER NOT NULL,
+    "accountable" BOOLEAN NOT NULL,
 
     CONSTRAINT "TeamLab_pkey" PRIMARY KEY ("id")
 );
@@ -104,10 +105,13 @@ CREATE UNIQUE INDEX "user_phone_number_key" ON "user"("phone_number");
 CREATE UNIQUE INDEX "user_email_key" ON "user"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "enterprise_cpnj_key" ON "enterprise"("cpnj");
+CREATE UNIQUE INDEX "enterprise_cnpj_key" ON "enterprise"("cnpj");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "enterprise_user_id_key" ON "enterprise"("user_id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "area_of_expertise_description_key" ON "area_of_expertise"("description");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Lab_name_key" ON "Lab"("name");
@@ -144,6 +148,9 @@ ALTER TABLE "laboratory_expertise" ADD CONSTRAINT "laboratory_expertise_lab_id_f
 
 -- AddForeignKey
 ALTER TABLE "laboratory_expertise" ADD CONSTRAINT "laboratory_expertise_area_of_expertise_id_fkey" FOREIGN KEY ("area_of_expertise_id") REFERENCES "area_of_expertise"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "TeamLab" ADD CONSTRAINT "TeamLab_lab_id_fkey" FOREIGN KEY ("lab_id") REFERENCES "Lab"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Professor" ADD CONSTRAINT "Professor_team_lab_id_fkey" FOREIGN KEY ("team_lab_id") REFERENCES "TeamLab"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

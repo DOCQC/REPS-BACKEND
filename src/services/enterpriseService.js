@@ -39,11 +39,6 @@ export async function findAll(data) {
     return prisma.enterprise.findMany(data)
 }
 
-
-export async function create(data) {
-    const ENTERPRISE = Number(process.env.ROLE_ENTERPRISE)
-
-
 export async function create(data) {
     const ENTERPRISE = Number(process.env.ROLE_ENTERPRISE)
     return await prisma.enterprise.create({

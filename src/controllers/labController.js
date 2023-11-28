@@ -11,6 +11,7 @@ export class LabController {
             "url_img": queryParam["url_img"],
             "skip": queryParam["pg"] == null? 0 : ( Number(queryParam["qt"]) * (Number(queryParam["pg"]) - 1) ),
             "take": queryParam["qt"] == null? 100 : Number(queryParam["qt"]),
+            "area_of_expertise": queryParam["area_of_expertise"],
             "verbose": queryParam["verbose"]
         }
 

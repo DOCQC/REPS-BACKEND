@@ -1,9 +1,11 @@
-import {PrismaClient} from '@prisma/client'
-
+import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
 export async function findAll(data) {
+
+
+
     return prisma.lab.findMany({
         skip: data["skip"],
         take: data["take"],
@@ -19,13 +21,27 @@ export async function findAll(data) {
             },
             url_img: {
                 startsWith: data["url_img"]
+            },
+            laboratory_expertise: {
+                every: {
+                    area_of_expertise: {
+                        description:{
+                            startsWith:data["area_of_expertise"]?.toUpperCase()?.trim()
+                        }
+                }
+            }
             }
         },
         include: {
-            laboratory_expertise:true
+
+            laboratory_expertise: data["verbose"] ? {
+                include: {
+                    area_of_expertise:true
+                }
+            } : false
+
         }
     })
-
 }
 
 export async function findById(id) {
@@ -34,22 +50,31 @@ export async function findById(id) {
             id: id,
         },
     });
-
 }
 
+
 export async function create(data) {
+
+   const laboratoryExpertisesCreated = formatTolaboratoryExpertisesCreated(data.laboratory_expertise["connect_are_of_expertise"])
     return prisma.lab.create({
         data: {
             description: data["description"],
             name: data["name"],
             abbreviation: data["abbreviation"],
-            url_img: data["url_img"]
+            url_img: data["url_img"],
+            laboratory_expertise: {
+                create: laboratoryExpertisesCreated
+            }
         },
     })
-
 }
 
+
 export async function update(data) {
+
+    const laboratoryExpertisesCreated = formatTolaboratoryExpertisesCreated(data.laboratory_expertise["connect_are_of_expertise"])
+    const laboratoryExpertisesExcluded = formatTolaboratoryExpertisesExcluded(data.laboratory_expertise["exclude_area_of_expertise_by_id"])
+
     return prisma.lab.update({
         where: {
             id: data["id"]
@@ -58,7 +83,12 @@ export async function update(data) {
             description: data["description"],
             name: data["name"],
             abbreviation: data["abbreviation"],
-            url_img: data["url_img"]
+            url_img: data["url_img"],
+            laboratory_expertise: {
+                deleteMany: laboratoryExpertisesExcluded,
+                create: laboratoryExpertisesCreated
+            }
+
         },
     })
 
@@ -71,4 +101,29 @@ export async function deleteById(data) {
         },
     })
 
+}
+
+function formatTolaboratoryExpertisesCreated(dateArray) {
+    const dataNow = new Date().toISOString()
+    const laboratoryExpertisesCreated = dateArray?.map(element => {
+        return {
+            start_date: dataNow,
+            area_of_expertise: {
+                connect: { description: element },
+            }
+        }
+    });
+
+    return laboratoryExpertisesCreated
+}
+
+
+function formatTolaboratoryExpertisesExcluded(dateArray){
+    const laboratoryExpertisesExcluded = dateArray?.map(element => {
+        return {
+            area_of_expertise_id:element
+        }
+    });
+
+    return laboratoryExpertisesExcluded
 }

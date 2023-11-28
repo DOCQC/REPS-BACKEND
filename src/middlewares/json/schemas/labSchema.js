@@ -25,6 +25,14 @@ export const post = {
             "description": "Laboratory's picture url. Does have a regex.",
             "type": "string",
             "format": "uri"
+        },
+        "laboratory_expertise":{
+            "type": "object",
+            "properties" : {
+                "connect_are_of_expertise":{
+                    "type": "array", "items": {"type": "string"}
+                },
+            }
         }
     },
     required: ["description", "name", "abbreviation", "url_img"]
@@ -57,6 +65,17 @@ export const put = {
             "description": "Laboratory's picture url. Does have a regex.",
             "type": "string",
             "format": "uri"
+        },
+        "laboratory_expertise":{
+            "type": "object",
+            "properties" : {
+                "connect_are_of_expertise":{
+                    "type": "array", "items": {"type": "string"}
+                },
+                "exclude_area_of_expertise_by_id":{
+                    "type": "array", "items": {"type": "number"}
+                }
+            }
         }
     }
 }

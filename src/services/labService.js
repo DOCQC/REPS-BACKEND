@@ -28,11 +28,15 @@ export async function findAll(data) {
             }
         },
         include: {
+<<<<<<< HEAD
             laboratory_expertise: data["verbose"] ? {
                 include: {
                     area_of_expertise:true
                 }
             } : false
+=======
+            laboratory_expertise:true
+>>>>>>> 7aa50f2 (fix(DOCB013): add CRUD (#21))
         }
     })
 }

@@ -7,9 +7,14 @@ export class QuestController {
         try {
             res.send( await questService.findById(Number(id)));
         }catch(err){   
+<<<<<<< HEAD
             next(err)
         }  
     }
+=======
+        }  
+
+>>>>>>> 7aa50f2 (fix(DOCB013): add CRUD (#21))
 
 
     static async findAll(req, res, next) {

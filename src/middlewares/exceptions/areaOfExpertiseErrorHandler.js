@@ -12,6 +12,12 @@ export const areaOfExpertiseErrorHandler = function (err, req, res, next) {
         serviceError.statusCode = 401
     }
 
+    if(err.code == "P2003"){
+        serviceError.cause = "description"
+        serviceError.message = "The area of expertise is used"
+        serviceError.statusCode = 401
+    }
+
 
     const NotFoundInDeleteteOrPut = err.code == "P2025" && (req.route.methods.delete || req.route.methods.put)
     if (NotFoundInDeleteteOrPut) {

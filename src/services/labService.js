@@ -33,11 +33,13 @@ export async function findAll(data) {
             }
         },
         include: {
+
             laboratory_expertise: data["verbose"] ? {
                 include: {
                     area_of_expertise:true
                 }
             } : false
+
         }
     })
 }

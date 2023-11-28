@@ -1,5 +1,6 @@
 export const enterpriseErrorHandler = function (err, req, res, next) {
 
+
     if(err.statusCode){
         next(err)
     }

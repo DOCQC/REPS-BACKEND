@@ -15,11 +15,16 @@ export class areaOfExpertiseController {
     }
 
     static async findAll(req, res, next) {
+
+        const queryParam = req.query
+
         const filter = {
             description: {
-                startsWith: queryParam["phone-number"]
+                startsWith: queryParam["description"]?.toUpperCase()?.trim()
+               
             }
         }
+
 
         const query = {
             skip: queryParam["pg"] == null ? 0 : (Number(queryParam["qt"]) * (Number(queryParam["pg"]) - 1)),

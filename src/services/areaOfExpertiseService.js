@@ -18,7 +18,7 @@ export async function findById(id) {
 export async function create(data) {
     return await prisma.areaOfExpertise.create({
         data: {
-            description: data["description"].toUpperCase()
+            description: data["description"].toUpperCase().trim()
         }
     })
 }

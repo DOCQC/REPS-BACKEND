@@ -7,16 +7,16 @@ export const areaOfExpertiseErrorHandler = function (err, req, res, next) {
     const serviceError = new Object()
 
     if (err.code == "P2002") {
-        serviceError.cause = "O campo descrição deve ser unico"
-        serviceError.message = "O campo descrição deve ser unico"
+        serviceError.cause = "description"
+        serviceError.message = "The description must be unique"
         serviceError.statusCode = 401
     }
 
 
-    const NotFoundInDelteOrPut = err.code == "P2025" && (req.route.methods.delete || req.route.methods.put)
-    if (NotFoundInDelteOrPut) {
-        serviceError.cause = "Area de atuaca  não encontrado"
-        serviceError.message = "Area de atuacao não encontrado"
+    const NotFoundInDeleteteOrPut = err.code == "P2025" && (req.route.methods.delete || req.route.methods.put)
+    if (NotFoundInDeleteteOrPut) {
+        serviceError.cause = "Area of expertise"
+        serviceError.message = "Area of expertise not found"
         serviceError.statusCode = 404
     }
 

@@ -10,8 +10,10 @@ export class LabController {
             "abbreviation": queryParam["abbreviation"],
             "url_img": queryParam["url_img"],
             "skip": queryParam["pg"] == null? 0 : ( Number(queryParam["qt"]) * (Number(queryParam["pg"]) - 1) ),
-            "take": queryParam["qt"] == null? 100 : Number(queryParam["qt"])
+            "take": queryParam["qt"] == null? 100 : Number(queryParam["qt"]),
+            "verbose": queryParam["verbose"]
         }
+
         res.send(await labService.findAll(data));
 
     }
@@ -42,7 +44,7 @@ export class LabController {
             "name": req.body["name"],
             "abbreviation": req.body["abbreviation"],
             "url_img": req.body["url_img"],
-        }
+            "laboratory_expertise": req.body["laboratory_expertise"] }
         try {
             const lab = await labService.update(data)
             res.send(lab)

@@ -73,7 +73,7 @@ model LaboratoryExpertise {
   lab_id     Int
   lab        Lab      @relation(fields: [lab_id], references: [id])
 
-  area_of_expertise_id Int
+  area_of_expertise_id Int @unique
   area_of_expertise    AreaOfExpertise @relation(fields: [area_of_expertise_id], references: [id])
 
   @@map("laboratory_expertise")

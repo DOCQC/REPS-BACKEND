@@ -73,7 +73,7 @@ npx prisma migrate dev
 ```
 
 ### Obeservação 
-Para que o sistema funcione corretamente, é necessário adicionar a variável ```ROLE_ENTERPRISE`````` no arquivo ```.env``` com o valor 2 atribuído. A imagem abaixo ilustra como fazer isso
+Para que o sistema funcione corretamente, é necessário adicionar a variável ```ROLE_ENTERPRISE`````` no arquivo ```.env``` com o valor da chave primária do tipo de usuário empresa atribuído. A imagem abaixo ilustra um exemplo:
 
 ![Alt text](image.png)
 
